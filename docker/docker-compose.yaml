@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest # Specifies the PostgreSQL image to use
+    environment:
+      POSTGRES_DB: household_account_db # Sets the database name
+      POSTGRES_USER: admin # Sets the database user
+      POSTGRES_PASSWORD: admin1234 # Sets the database password
+    volumes:
+      - ./data:/var/lib/postgresql/data # Bind mount to a local folder named data for data persistence
+    ports:
+      - "5432:5432" # Maps host port 5432 to container port 5432
+    healthcheck: # Optional: defines a health check for the service
+      test: ["CMD-SHELL", "pg_isready -U admin -d household_account_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
