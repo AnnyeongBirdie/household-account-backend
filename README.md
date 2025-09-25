@@ -15,34 +15,35 @@ Provides REST API endpoints to store and fetch transactions.
 ## Getting Started
 
 1. Clone the repo:
-   ```bash
+
    git clone https://github.com/<your-username>/household-account-backend.git
 
 2. Navigate into the project folder
 
-3. Install dependencies
+3. Install dependencies:
    
     npm install
 
-4. Copy .env.example to .env and fill in your values
+4. Environment Setup
 
-    cp .env.example .env
+    This project uses environment variables for configuration. Sensitive values (like database passwords) are never committed — instead, we use a safe template file. Copy .env.example to .env and fill in your values:
+    
+        cp .env.example .env
+
+    ⚠️ Do not commit .env. It is ignored by Git for security reasons. Only .env.example is tracked in version control.
 
 ## Running the Project
 
-1. Start Dockerized PostgreSQL
+1. Start Dockerized PostgreSQL:
     
     docker compose -f docker/docker-compose.yaml up -d
 
-2. Run backend server
+2. Run backend server:
 
-    docker compose -f docker/docker-compose.yaml up -d
+   npm run dev
 
-3. Run bakcend server
-
-    npm run dev
-
-- API available at: http://localhost:5000/api/transactions
+3. Your server should now be running at: http://localhost:5000
+   API available at: http://localhost:5000/api/transactions
 
 ## Database Setup
 
