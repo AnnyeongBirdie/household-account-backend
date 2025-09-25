@@ -1,33 +1,61 @@
-⚙️ Environment Setup
+# Household Account Backend
 
-This project uses environment variables for configuration.
-Sensitive values (like database passwords) are never committed — instead, we use a safe template file.
+A simple Express + PostgreSQL backend for tracking income and expenses.  
+Provides REST API endpoints to store and fetch transactions.
 
-1. Copy the example file
+---
 
-In your project root (household-account-backend), run:
+## Features
+- REST API endpoints (`/api/transactions`)
+- Dockerized PostgreSQL setup
+- Secure environment variables with `.env.example`
 
-cp .env.example .env
+---
 
-2. Fill in the real values
+## Getting Started
 
-Open .env in your editor and update:
+1. Clone the repo:
+   ```bash
+   git clone https://github.com/<your-username>/household-account-backend.git
 
-DB_USER=your_real_username
-DB_PASSWORD=your_real_password
-DB_HOST=localhost
-DB_PORT=5432
-DB_NAME=household_account_db
-PORT=5000
+2. Navigate into the project folder
 
+3. Install dependencies
+   
+    npm install
 
-⚠️ Do not commit .env. It is ignored by Git for security reasons.
-Only .env.example is tracked in version control.
+4. Copy .env.example to .env and fill in your values
 
-3. Start the backend
-npm install
-npm run dev
+    cp .env.example .env
 
+## Running the Project
 
-Your server should now be running at:
-👉 http://localhost:5000
+1. Start Dockerized PostgreSQL
+    
+    docker compose -f docker/docker-compose.yaml up -d
+
+2. Run backend server
+
+    docker compose -f docker/docker-compose.yaml up -d
+
+3. Run bakcend server
+
+    npm run dev
+
+- API available at: http://localhost:5000/api/transactions
+
+## Database Setup
+
+- PostgreSQL container is managed via Docker Compose.
+- On first run, the transactions table is created automatically if not present.
+- Persistent data stored in docker/data (ignored by Git).
+
+## API Endpoints
+
+- GET /api/transactions → Fetch all transactions
+- POST /api/transactions → Add a new transaction
+
+## Notes
+
+- .env must never be committed. Only .env.example is tracked.
+- Recommended to use nodemon for live development.
